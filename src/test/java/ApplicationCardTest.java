@@ -40,13 +40,18 @@ public class ApplicationCardTest {
     void shouldTestV1()
         throws InterruptedException {
             driver.get("http://localhost:9999/");
-            List<WebElement> inputs = driver.findElements(By.tagName("input"));
-            inputs.get(0).sendKeys("Петров Иван");
-            inputs.get(1).sendKeys("+89632541725");
-            driver.findElement(By.className("checkbox")).click();
+            driver.findElement(By.cssSelector("[data-test-id=name] input")).sendKeys("Петров Иван");
+            driver.findElement(By.cssSelector("[data-test-id=phone] input ")).sendKeys("+89632541725");
+            driver.findElement(By.cssSelector("[data-test-id=agreement]")).click();
             driver.findElement(By.tagName("button")).click();
+            //List<WebElement> inputs = driver.findElements(By.tagName("input"));
+            //inputs.get(0).sendKeys("Петров Иван");
+            //inputs.get(1).sendKeys("+89632541725");
+            //driver.findElement(By.className("checkbox")).click();
+            //driver.findElement(By.tagName("button")).click();
             String expected = "Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время.";
-            String actual = driver.findElement(By.className("paragraph")).getText().trim();
+            String actual = driver.findElement(By.cssSelector("[data-test-id=order-success]")).getText().trim();
+            //String actual = driver.findElement(By.className("paragraph")).getText().trim();
             assertEquals(expected, actual);
         }
 }
