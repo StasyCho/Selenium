@@ -6,6 +6,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 
 import java.util.List;
 
@@ -13,6 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ApplicationCardTest {
     private WebDriver driver;
+    ChromeOptions options = new ChromeOptions();
 
     @BeforeAll
     static void setUpAll() {
@@ -21,6 +23,9 @@ public class ApplicationCardTest {
 
     @BeforeEach
     void setUp() {
+        options.addArguments("--disable-dev-shm-usage");
+        options.addArguments("--no-sandbox");
+        options.addArguments("--headless");
         driver = new ChromeDriver();
     }
 
@@ -40,7 +45,7 @@ public class ApplicationCardTest {
             driver.findElement(By.className("checkbox")).click();
             driver.findElement(By.tagName("button")).click();
             String expected = "Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время.";
-            String actual = driver.findElement(By.id("order-success")).getText();
+            String actual = driver.findElement(By.className("paragraph")).getText().trim();
             assertEquals(expected, actual);
         }
 }
