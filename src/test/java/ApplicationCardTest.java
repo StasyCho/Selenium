@@ -28,7 +28,7 @@ public class ApplicationCardTest {
         options.addArguments("--disable-dev-shm-usage");
         options.addArguments("--no-sandbox");
         options.addArguments("--headless");
-        driver = new ChromeDriver();
+        driver = new ChromeDriver(options);
     }
 
     @AfterEach
@@ -38,8 +38,7 @@ public class ApplicationCardTest {
     }
 
     @Test
-    void shouldTestV1()
-        throws InterruptedException {
+    void shouldTestV1() {
             driver.get("http://localhost:9999/");
             driver.findElement(By.cssSelector("[data-test-id=name] input")).sendKeys("Петров Иван");
             driver.findElement(By.cssSelector("[data-test-id=phone] input ")).sendKeys("+89632541725");
@@ -56,8 +55,7 @@ public class ApplicationCardTest {
             assertEquals(expected, actual);
         }
     @Test
-    void shouldTestV2()
-            throws InterruptedException {
+    void shouldTestV2() {
         driver.get("http://localhost:9999/");
         driver.findElement(By.cssSelector("[data-test-id=name] input")).sendKeys("Stasy");
         driver.findElement(By.cssSelector("[data-test-id=phone] input ")).sendKeys("+89632541725");
@@ -68,8 +66,7 @@ public class ApplicationCardTest {
         assertEquals(expected, actual);
     }
     @Test
-    void shouldTestV3()
-            throws InterruptedException {
+    void shouldTestV3() {
         driver.get("http://localhost:9999/");
         driver.findElement(By.cssSelector("[data-test-id=name] input")).sendKeys("Иванов-Петров Иван");
         driver.findElement(By.cssSelector("[data-test-id=phone] input ")).sendKeys("+896325417258");
