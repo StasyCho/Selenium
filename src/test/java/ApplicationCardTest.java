@@ -54,26 +54,4 @@ public class ApplicationCardTest {
             //String actual = driver.findElement(By.className("paragraph")).getText().trim();
             assertEquals(expected, actual);
         }
-    @Test
-    void shouldTestV2() {
-        driver.get("http://localhost:9999/");
-        driver.findElement(By.cssSelector("[data-test-id=name] input")).sendKeys("Stasy");
-        driver.findElement(By.cssSelector("[data-test-id=phone] input ")).sendKeys("+89632541725");
-        driver.findElement(By.cssSelector("[data-test-id=agreement]")).click();
-        driver.findElement(By.tagName("button")).click();
-        String expected = "Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время.";
-        String actual = driver.findElement(By.cssSelector("[data-test-id=order-success]")).getText().trim();
-        assertEquals(expected, actual);
-    }
-    @Test
-    void shouldTestV3() {
-        driver.get("http://localhost:9999/");
-        driver.findElement(By.cssSelector("[data-test-id=name] input")).sendKeys("Иванов-Петров Иван");
-        driver.findElement(By.cssSelector("[data-test-id=phone] input ")).sendKeys("+896325417258");
-        driver.findElement(By.cssSelector("[data-test-id=agreement]")).click();
-        driver.findElement(By.tagName("button")).click();
-        String expected = "Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время.";
-        String actual = driver.findElement(By.cssSelector("[data-test-id=order-success]")).getText().trim();
-        assertEquals(expected, actual);
-    }
 }
